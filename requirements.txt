@@ -1,0 +1,7 @@
+Flask
+pandas
+mysql-connector
+apyori
+mlxtend
+fpdf
+openpyxl

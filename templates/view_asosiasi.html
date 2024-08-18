@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Hasil Asosiasi</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h2>Detail Hasil Asosiasi</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Antecedent</th>
+                <th>Consequent</th>
+                <th>Support</th>
+                <th>Confidence</th>
+                <th>Lift</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if details %}
+            {% for detail in details %}
+            <tr>
+                <td>{{ detail.antecedent }}</td>
+                <td>{{ detail.consequent }}</td>
+                <td>{{ detail.support }}</td>
+                <td>{{ detail.confidence }}</td>
+                <td>{{ detail.lift }}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="5">No data available</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <div style="text-align: center; margin-top: 5px;">
+        <button onclick="window.location.href='{{ url_for('asosiasi_list') }}'">
+            Kembali ke Daftar Asosiasi
+        </button>
+    </div>    
+    
+</body>
+
+</html>

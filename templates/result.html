@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Analisis Apriori</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:hover {
+            background-color: #ddd;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .download-btn,
+        .nav-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 10px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .download-btn:hover,
+        .nav-btn:hover {
+            background-color: #45a049;
+        }
+
+        .nav-btn {
+            background-color: #007BFF;
+        }
+
+        .nav-btn:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            table {
+                width: 100%;
+            }
+
+            .button-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .download-btn,
+            .nav-btn {
+                width: 80%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Hasil Analisis Apriori</h2>
+
+    {% if results %}
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Paket</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+            <tr>
+                <td>{{ result['No'] }}</td>
+                <td>{{ result['Nama Paket'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p style="text-align: center;">Tidak ada hasil yang ditemukan.</p>
+    {% endif %}
+
+    <div class="button-container">
+        <a href="{{ url_for('download_apriori_pdf', id_asosiasi=id_asosiasi) }}" class="download-btn">Download PDF</a>
+        <a href="{{ url_for('asosiasi_list') }}" class="nav-btn">Riwayat Hasil</a>
+        <a href="{{ url_for('view_detail_asosiasi', id_asosiasi=id_asosiasi) }}" class="nav-btn">Detail Asosiasi</a>
+    </div>
+</body>
+
+</html>
